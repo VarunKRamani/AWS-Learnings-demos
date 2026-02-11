@@ -1,0 +1,60 @@
+Resources:
+
+  VpcCreation:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: Vpc-cft-demo
+  
+  IgwCreation:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: Igw-cft-demo
+
+  VpcIgwattachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: String
+      VpcId: String
+
+  SubnetCreation:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: String
+      CidrBlock: 10.0.1.0/24
+      AvailabilityZone: us-east-1a
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: Name
+          Value: vpc-subnet-cft
+
+  RouteTableCreation:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: String 
+      Tags:
+        - Key: Name
+          Value: vpc-routetable-cft
+  
+  PublicRoute:
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId:
+        Ref: RouteTableCreation
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: myInternetGateway
+
+  PublicSubnetRouteAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId: String
+      SubnetId: String
+
+

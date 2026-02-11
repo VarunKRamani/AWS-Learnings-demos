@@ -1,0 +1,13 @@
+Resources:
+  S3Listusers:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: iam-user-name-for-aws-cft
+      Policies:
+          - PolicyName: gives3access
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                Effect: Allow
+                Action: s3:ListAllMyBuckets
+                Resource: '*'
