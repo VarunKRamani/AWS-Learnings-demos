@@ -1,0 +1,150 @@
+#Just to Practice the templates 
+
+Resources:
+    myVPC:
+      Type: AWS::EC2::VPC
+      Properties:
+        CidrBlock: 10.0.0.0/16
+        EnableDnsSupport: true
+        EnableDnsHostnames: true
+        Tags:
+          - Key: Name
+            Value: Vpc-Cft-demo
+    
+    myInternetGateway:
+      Type: AWS::EC2::InternetGateway
+      Properties:
+        Tags:
+        - Key: Name
+          Value: Igw-Cft-demo
+
+    AttachGateway:
+      Type: AWS::EC2::VPCGatewayAttachment
+      Properties:
+        VpcId:
+          Ref: myVPC
+        InternetGatewayId:
+          Ref: myInternetGateway
+  
+    myPublicSubnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: 10.0.10.0/24
+        AvailabilityZone: us-east-1a
+        MapPublicIpOnLaunch: true
+        VpcId: 
+          Ref: myVPC
+        Tags:
+          - Key: Name
+            Value: PublicSubnet-Cft-demo
+
+    myPublicRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId:  
+          Ref: myVPC
+        Tags:
+          - Key: Name
+            Value: PublicRouteTable-Cft-demo
+
+    myRoute:
+      Type: AWS::EC2::Route
+      DependsOn: AttachGateway
+      Properties:
+        DestinationCidrBlock: 0.0.0.0/0        #Only for public subnet facing Internet
+        RouteTableId:
+          Ref: myPublicRouteTable
+        GatewayId:
+          Ref: myInternetGateway
+
+    myPublicSubnetRouteTableAssociation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        SubnetId:
+          Ref: myPublicSubnet
+        RouteTableId:
+          Ref: myPublicRouteTable
+
+    myPrivateSubnet:
+      Type: AWS::EC2::Subnet
+      Properties:
+        CidrBlock: 10.0.20.0/24
+        AvailabilityZone: us-east-1a
+        MapPublicIpOnLaunch: false
+        VpcId: 
+          Ref: myVPC
+        Tags:
+          - Key: Name
+            Value: PrivateSubnet-Cft-demo
+
+    myPrivateRouteTable:
+      Type: AWS::EC2::RouteTable
+      Properties:
+        VpcId:  
+          Ref: myVPC
+        Tags:
+          - Key: Name
+            Value: PrivateRouteTable-Cft-demo
+
+    myPrivateSubnetRouteTableAssociation:
+      Type: AWS::EC2::SubnetRouteTableAssociation
+      Properties:
+        SubnetId:
+          Ref: myPrivateSubnet
+        RouteTableId:
+          Ref: myPrivateRouteTable
+    
+    NATGatewayEIP:
+      Type: AWS::EC2::EIP
+      Properties:
+        Domain: vpc
+
+    NATGateway:
+      Type: AWS::EC2::NatGateway
+      Properties:
+        AllocationId:
+          Fn::GetAtt:
+            - NATGatewayEIP
+            - AllocationId
+        SubnetId: 
+          Ref: myPublicSubnet
+        Tags:
+          - Key: Name
+            Value: Nat-cft-demo
+
+    myPrivateRoute:
+      Type: AWS::EC2::Route
+      DependsOn: NATGateway
+      Properties:
+        DestinationCidrBlock: 0.0.0.0/0            #Only for private subnet facing NAT gateway 
+        RouteTableId:
+          Ref: myPrivateRouteTable
+        NATGatewayId:
+          Ref: NATGateway
+
+    PrivateEC2SecurityGroup:
+      Type: AWS::EC2::SecurityGroup
+      Properties:
+        VpcId: 
+          Ref: myVPC
+        SecurityGroupIngress:
+          - IpProtocol: tcp
+            FromPort: 22
+            ToPort: 22
+            CidrIp: 10.0.0.0/16
+        SecurityGroupEgress:
+          - IpProtocol: -1
+            CidrIp: 0.0.0.0/0
+
+    PrivateEC2Instance:
+      Type: AWS::EC2::Instance
+      Properties:
+        InstanceType: t2.micro
+        SubnetId:
+          Ref: myPrivateSubnet
+        SecurityGroupIds:
+          - Ref: PrivateEC2SecurityGroup
+        ImageId: ami-0c02fb55956c7d316            #Amazon Linux 2 (us-east-1)
+        Tags:
+          - Key: Name
+            Value: Private-EC2-Cft-demo

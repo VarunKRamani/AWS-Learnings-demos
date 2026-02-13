@@ -1,0 +1,7 @@
+Resources:
+  BucketS3JustaName:      #just a element name / section name to reffer to
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: bucket-name-done-from-aws-cft-nodpa       # actual name of the bucket
+      VersioningConfiguration:
+        Status: Enabled

@@ -1,0 +1,29 @@
+Resources:
+
+  VpcCreation:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+      Tags:
+        - Key: Name
+          Value: aws-vpc-cft
+
+
+  IgwCreation:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: Name
+          Value: aws-igw-cft
+
+#
+  VpcIgwAttach:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId: 
+        Ref: VpcCreation
+      InternetGatewayId:
+        Ref: IgwCreation
+
