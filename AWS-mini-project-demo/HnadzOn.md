@@ -1,9 +1,16 @@
 # Overview
 
-This mini project is to understande how to access a application within a private subnet, with the help of bastion host.
+- This example demonstrates how to create a VPC that you can use for servers in a production environment.
+- To improve resiliency, we deploy the servers in two Availability Zones, by using an Auto Scaling group and an Application Load Balancer. For additional security, we deploy the servers in private subnets. 
+- The servers receive requests through the load balancer. The servers can connect to the internet by using a NAT gateway. To improve resiliency, we deploy the NAT gateway in both Availability Zones.
+- The architecture is created using aws cft. EC2, NAT gateway, internet gateway, elastic ip etc.
+- This mini project is to understande how to access a application within a private subnet, with the help of bastion host.
 
-the architecture is created using aws cft. EC2, NAT gateway, internet gateway, elastic ip etc.
 
+The Architecture
+<img width="1132" height="895" alt="Screenshot 2026-07-01 195428" src="https://github.com/user-attachments/assets/9f3bbf63-f3f7-4c27-97b1-1a59a7e0e8f0" />
+
+_____
 - Creation of resources
 <img width="1120" height="844" alt="Screenshot 2025-12-03 124706" src="https://github.com/user-attachments/assets/64afd435-4126-4b21-8c38-bb45efbbc209" />
 - Instances created on different avilablity zones through AWS Cloud Formation, And Bastion Host.
