@@ -9,10 +9,11 @@
 Auto Scaling group:
 NAT Gateway:
 Internet Gateway:
-E;astic IP:
+Elastic IP:
 **Bastion Host:**
 A bastion host also known as a** jump server or jump box** is a highly secured, hardened server specifically designed to act as a secure gateway between an external untrusted network like the public internet and an internal private network.
-<img width="600" height="350" alt="image" src="https://github.com/user-attachments/assets/3c84933a-3e0e-42d3-83f3-8a55d97bf616" />
+
+<img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/8bdd723b-032d-42d6-8496-4855d8135c19" />
 
 ## The Architecture
 <img width="750" height="500" alt="Screenshot 2026-07-01 195428" src="https://github.com/user-attachments/assets/9f3bbf63-f3f7-4c27-97b1-1a59a7e0e8f0" />
