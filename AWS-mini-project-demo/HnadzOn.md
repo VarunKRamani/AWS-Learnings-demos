@@ -6,10 +6,16 @@
 - The architecture is created using aws cft. EC2, NAT gateway, internet gateway, elastic ip etc.
 - This mini project is to understande how to access a application within a private subnet, with the help of bastion host.
 
+Auto Scaling group:
+NAT Gateway:
+Internet Gateway:
+E;astic IP:
+**Bastion Host:**
+A bastion host also known as a** jump server or jump box** is a highly secured, hardened server specifically designed to act as a secure gateway between an external untrusted network like the public internet and an internal private network.
+<img width="600" height="350" alt="image" src="https://github.com/user-attachments/assets/3c84933a-3e0e-42d3-83f3-8a55d97bf616" />
 
 ## The Architecture
 <img width="750" height="500" alt="Screenshot 2026-07-01 195428" src="https://github.com/user-attachments/assets/9f3bbf63-f3f7-4c27-97b1-1a59a7e0e8f0" />
-
 _____
 - Creation of resources
 <img width="1120" height="844" alt="Screenshot 2025-12-03 124706" src="https://github.com/user-attachments/assets/64afd435-4126-4b21-8c38-bb45efbbc209" />
