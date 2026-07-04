@@ -6,10 +6,14 @@
 - The architecture is created using aws cft. EC2, NAT gateway, internet gateway, elastic ip etc.
 - This mini project is to understande how to access a application within a private subnet, with the help of bastion host.
 
-Auto Scaling group:
-NAT Gateway:
-Internet Gateway:
-Elastic IP:
+**Auto Scaling group:** Auto scalling group (ASG) in AWS is a service that automatically mantains the desired number of EC2 instnces by launching new instances when the demand increases and replaces unhealthy instances when they fail. It helps ensure high availablity and scalability. 
+
+**NAT Gateway:** NAT Gateway allows an instance in private subnet to access internet (download resources and etc) outbound communication while preventing internet from inbound connection to the instance. 
+
+**Internet Gateway:** An AWS managed gateway that connects VPC with public subnet. It allows traffic to resources in public subnet when appropriate route table and security groups. 
+
+**Elastic IP:** Elastic Ip is nothing but a static IP usually used with resources like instances and NAT gateways. Unlike regular public IPs. elastic IPs attached to the resource remain same, even if the resource restart or is replaced making it useful for stable connectivity. 
+
 **Bastion Host:**
 A bastion host also known as a** jump server or jump box** is a highly secured, hardened server specifically designed to act as a secure gateway between an external untrusted network like the public internet and an internal private network.
 
