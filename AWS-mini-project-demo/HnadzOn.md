@@ -21,6 +21,9 @@ A bastion host also known as a** jump server or jump box** is a highly secured, 
 
 ## The Architecture
 <img width="750" height="500" alt="Screenshot 2026-07-01 195428" src="https://github.com/user-attachments/assets/9f3bbf63-f3f7-4c27-97b1-1a59a7e0e8f0" />
+
+<img width="1457" height="510" alt="image" src="https://github.com/user-attachments/assets/b5066067-f7e3-41bd-822b-c81389ae9870" />
+By deploying resources across multiple zones, we ensure that our architecture is robust enough to withstand localized infrastructure disruptions. Using two Availability Zones (AZs) in a production environment is a best practice for improving resiliency and high availability.
 _____
 - Creation of resources
 <img width="1120" height="844" alt="Screenshot 2025-12-03 124706" src="https://github.com/user-attachments/assets/64afd435-4126-4b21-8c38-bb45efbbc209" />
