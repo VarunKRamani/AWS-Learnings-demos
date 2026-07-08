@@ -17,6 +17,12 @@
 **Bastion Host:**
 A bastion host also known as a** jump server or jump box** is a highly secured, hardened server specifically designed to act as a secure gateway between an external untrusted network like the public internet and an internal private network.
 
+**Target Group:**
+A Target Group is a collection of backend resources (such as EC2 instances, IP addresses, or Kubernetes pods) that receive traffic from a Load Balancer.
+
+**Route Table:**
+A Route Table is a set of rules that determines where network traffic from a subnet is directed. Each route specifies a destination (such as another subnet or the internet) and the gateway or resource through which the traffic should be sent.
+
 <img width="700" height="400" alt="image" src="https://github.com/user-attachments/assets/8bdd723b-032d-42d6-8496-4855d8135c19" />
 
 ## The Architecture
