@@ -30,11 +30,14 @@ A Route Table is a set of rules that determines where network traffic from a sub
 
 <img width="1457" height="510" alt="image" src="https://github.com/user-attachments/assets/b5066067-f7e3-41bd-822b-c81389ae9870" />
 By deploying resources across multiple zones, we ensure that our architecture is robust enough to withstand localized infrastructure disruptions. Using two Availability Zones (AZs) in a production environment is a best practice for improving resiliency and high availability.
+
 _____
+
+
 - Creation of resources
 <img width="1120" height="844" alt="Screenshot 2025-12-03 124706" src="https://github.com/user-attachments/assets/64afd435-4126-4b21-8c38-bb45efbbc209" />
 
-- Instances created on different avilablity zones through AWS Cloud Formation, And Bastion Host.
+
 <img width="1915" height="451" alt="Screenshot 2025-12-03 133714" src="https://github.com/user-attachments/assets/d550fa19-49a3-4d50-88f4-0d8bbd1388a4" />
 
 - Auto Scaling group
@@ -46,9 +49,13 @@ _____
 - Project accessable.
 <img width="1919" height="1079" alt="Screenshot 2025-12-03 151036" src="https://github.com/user-attachments/assets/c59ec024-3665-4c84-a52c-c2d600ae4196" />
 
-- Exp ---------------------
+## Process of resource creation
 <img width="1919" height="1079" alt="Screenshot 2025-12-03 151118" src="https://github.com/user-attachments/assets/46e8d19d-5267-4e61-880c-39161748339b" />
 
+- VPC creatiion: Here we create a public and private subnet in requried two availability zones i.e in `us-east-1a` and `us-east-1b`. The route table are attached with network connection to Internet Gateway.
+- Once the VPC is created, we move to crate Auto Scaling group, for which a launch tamplate needs to be created. For Launch template type in name, type of EC2 requried, OS, Select the VPC created and security group. Now select the reated launch template under Auto scalling group creation with name, VPC, AZs and select the group size (min, max and desired).
+- Cross check is the EC2 and other resources are created, once confirmed will move to installing the python app on the server (Instance in private subnet).
+- 
 
 **Code Explanation** 
 ---------------------------------
