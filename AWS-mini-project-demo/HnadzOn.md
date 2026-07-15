@@ -55,7 +55,10 @@ _____
 - VPC creatiion: Here we create a public and private subnet in requried two availability zones i.e in `us-east-1a` and `us-east-1b`. The route table are attached with network connection to Internet Gateway.
 - Once the VPC is created, we move to crate Auto Scaling group, for which a launch tamplate needs to be created. For Launch template type in name, type of EC2 requried, OS, Select the VPC created and security group. Now select the reated launch template under Auto scalling group creation with name, VPC, AZs and select the group size (min, max and desired).
 - Cross check is the EC2 and other resources are created, once confirmed will move to installing the python app on the server (Instance in private subnet).
-- 
+- To access the EC2 in private subnet, we need a jump server or also know as bastion host. Once the Bastion host is created in public subnet, we will .pem file to bastion that is requried to ssh to our private serves. Using the command "scp"
+- Ssh to the Bastion host and check if .pem file was copied. Now, ssh to private server using its private IP and create a simple html page for testing the accessiblity.
+- Load Balancer is created in public subnet to distribute the load among two instances(servers) in private subnet. Application load balancer type is used (http and https i.e. Layer 7) facing the internet, Create the requried target group under the created VPC, http 8000 port and select the EC2.
+- Add the Created Target group to create the LB, once done get the DNS name and browse it. 
 
 **Code Explanation** 
 ---------------------------------
