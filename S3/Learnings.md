@@ -17,4 +17,5 @@ We start from unabling the versioning feature of the bucket. The previous versio
 
 - **Static website hosting**:
 Under this demo, we demonstratite static website hosting in bucket, go to properties of bucket and enable static website hosting. Once the hosting feature is unabled make sure the public Access is also enabled to see the website hosted, check under permissions to make it publically available. Now edit the bucket policy too, for all the public to access the website. once the website is hosted get the URL under 'static website hosting' and browse it to access the website. 
+<img width="1911" height="431" alt="image" src="https://github.com/user-attachments/assets/e8d7739e-6c57-45f0-8646-06b4593ee3ec" />
 
